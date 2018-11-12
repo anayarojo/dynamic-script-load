@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dynamic Script Load</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card col-12 mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Run external function</h5>
+                <input id="txtFunction" type="text" class="form-control mb-2" placeholder="function">
+                <button id="btnRun" type="button" class="btn btn-primary mb-2">Run</button>
+            </div>
+        </div>
+    </div>
+    <script src="lib/jquery-3.3.1.slim.min.js"></script>
+    <script src="lib/popper.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnRun').click(function (event) {
+                let $txtFunction = $('#txtFunction');
+                Main.run($txtFunction.val());
+            });
+        });
+    </script>
+</body>
+
+</html>
