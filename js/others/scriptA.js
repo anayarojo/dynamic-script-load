@@ -1,1 +1,3 @@
-console.log('A');
+Main.scriptA = function(){
+    console.log('Main.scriptA()');
+};

@@ -2,13 +2,27 @@ var Main = (function(){
 
     let obj = {};
 
-    obj.run = function(script){
-        let url = `js/others/script${script}.js`;
-        loadScript(url, function(){
-            console.log(`${url}`);
+    obj.run = function(fn, ...args){
+        getFunction(fn).then(function(func){
+            if(func && typeof func == 'function') func(args);
         });
     };
 
+    function getFunction(fn){
+        return new Promise(function(resolve, reject){
+            let name = `script${fn}`;
+            if(typeof obj[name] == 'undefined') {
+                let url = `js/others/script${fn}.js`;
+                loadScript(url, function(){
+                    console.info(`Load ─ ${url}`);
+                    resolve(obj[name]);
+                });
+            } else {
+                resolve(obj[name]);    
+            } 
+        });
+    }
+    
     function loadScript(url, callback) {
         var script = document.createElement('script');
         if (script.readyState) { // Internet Explorer
