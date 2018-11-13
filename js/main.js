@@ -12,7 +12,7 @@ var Main = (function(){
         return new Promise(function(resolve, reject){
             let name = `script${fn}`;
             if(typeof obj[name] == 'undefined') {
-                let url = `js/others/script${fn}.js`;
+                let url = `${window.location.origin}/js/others/script${fn}.js`;
                 loadScript(url, function(){
                     console.info(`Load ─ ${url}`);
                     resolve(obj[name]);
