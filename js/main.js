@@ -1,6 +1,7 @@
 var Main = (function () {
 
     let obj = {};
+    let url = getScriptUrl();
 
     obj.run = function (fn, ...args) {
         getFunction(fn).then(function (func) {
@@ -9,12 +10,13 @@ var Main = (function () {
     };
 
     obj.getScriptURL = function () {
-        var scripts = document.getElementsByTagName('script');
-        var index = scripts.length - 1;
-        var myScript = scripts[index];
-        return function () {
-            return myScript.src;
-        };
+        return url;
+        // var scripts = document.getElementsByTagName('script');
+        // var index = scripts.length - 1;
+        // var myScript = scripts[index];
+        // return function () {
+        //     return myScript.src;
+        // };
     };
 
     function getFunction(fn) {
@@ -49,6 +51,13 @@ var Main = (function () {
         script.src = url;
         document.getElementsByTagName('head')[0].appendChild(script);
     };
+
+    function getScriptUrl(){
+        var scripts = document.getElementsByTagName('script');
+        var index = scripts.length - 1;
+        var myScript = scripts[index];
+        return myScript.src;
+    }
 
     return obj;
 
